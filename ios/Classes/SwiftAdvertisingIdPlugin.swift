@@ -20,6 +20,8 @@ public class SwiftAdvertisingIdPlugin: NSObject, FlutterPlugin {
             idfaString = ""
         }
         result(idfaString)
+    case "getAdvertisingIdForVendor":
+        result(UIDevice.current.identifierForVendor?.uuidString)
     default:
         result(nil)
     }

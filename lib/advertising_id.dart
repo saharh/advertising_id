@@ -10,4 +10,9 @@ class AdvertisingId {
     final String id = await _channel.invokeMethod('getAdvertisingId');
     return id;
   }
+
+  static Future<String> get idfv async {
+    final String id = await _channel.invokeMethod('getAdvertisingIdForVendor');
+    return id;
+  }
 }
