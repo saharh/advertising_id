@@ -1,10 +1,10 @@
 package com.os.operando.advertisingid
 
 import com.google.android.gms.ads.identifier.AdvertisingIdClient
+import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.PluginRegistry.Registrar
 import kotlin.concurrent.thread
 
@@ -22,9 +22,14 @@ class AdvertisingIdPlugin(private val registrar: Registrar) : MethodCallHandler 
         when (call.method) {
             "getAdvertisingId" -> thread {
                 try {
-                    result.success(AdvertisingIdClient.getAdvertisingIdInfo(registrar.context()).id)
+                    val advertisingIdInfo = AdvertisingIdClient.getAdvertisingIdInfo(registrar.context())
+                    registrar.activity().runOnUiThread {
+                        result.success(advertisingIdInfo.id)
+                    }
                 } catch (e: Exception) {
-                    result.success("")
+                    registrar.activity().runOnUiThread {
+                        result.success("")
+                    }
                 }
             }
             else -> result.notImplemented()
