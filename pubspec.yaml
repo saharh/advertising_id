@@ -9,10 +9,14 @@ flutter:
     androidPackage: com.os.operando.advertisingid
     pluginClass: AdvertisingIdPlugin
 
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
 dependencies:
   flutter:
     sdk: flutter
 
-environment:
-  sdk: ">=1.21.0 <3.0.0"
-  flutter: ">=0.1.4"
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+    
