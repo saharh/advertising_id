@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/services.dart';
 
@@ -9,6 +10,15 @@ class AdvertisingId {
     final String? id = await _channel.invokeMethod(
         'getAdvertisingId', requestTrackingAuthorization);
     return id;
+  }
+
+  static Future<String?> idfv([bool requestTrackingAuthorization = false]) async {
+    if (!Platform.isIOS) {
+      return null;
+    }
+    final String? idfv = await _channel.invokeMethod(
+        'getAdvertisingIdfv', requestTrackingAuthorization);
+    return idfv;
   }
 
   static Future<bool?> get isLimitAdTrackingEnabled async {
