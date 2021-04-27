@@ -21,13 +21,14 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   initPlatformState() async {
-    String? advertisingId;
+    String? advertisingId, advertisingIdfv;
     bool? isLimitAdTrackingEnabled;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       advertisingId = await AdvertisingId.id(true);
+      advertisingIdfv = await AdvertisingId.idfv();
     } on PlatformException {
-      advertisingId = 'Failed to get platform version.';
+      advertisingId = 'Failed to get idfa.';
     }
 
     try {
@@ -35,6 +36,7 @@ class _MyAppState extends State<MyApp> {
     } on PlatformException {
       isLimitAdTrackingEnabled = false;
     }
+    debugPrint("IDFA: $advertisingId, IDFV: $advertisingIdfv, isLimitAdTrackingEnabled: $isLimitAdTrackingEnabled");
 
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling

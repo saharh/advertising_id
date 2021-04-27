@@ -12,12 +12,11 @@ class AdvertisingId {
     return id;
   }
 
-  static Future<String?> idfv([bool requestTrackingAuthorization = false]) async {
+  static Future<String?> idfv() async {
     if (!Platform.isIOS) {
       return null;
     }
-    final String? idfv = await _channel.invokeMethod(
-        'getAdvertisingIdfv', requestTrackingAuthorization);
+    final String? idfv = await _channel.invokeMethod('getAdvertisingIdfv');
     return idfv;
   }
 
