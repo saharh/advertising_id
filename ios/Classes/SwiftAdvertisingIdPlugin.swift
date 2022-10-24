@@ -41,9 +41,9 @@ public class SwiftAdvertisingIdPlugin: NSObject, FlutterPlugin {
             result(UIDevice.current.identifierForVendor?.uuidString)
         case "isLimitAdTrackingEnabled":
             if #available(iOS 14.0, *) {
-                result(ATTrackingManager.trackingAuthorizationStatus == ATTrackingManager.AuthorizationStatus.authorized)
+                result(ATTrackingManager.trackingAuthorizationStatus != ATTrackingManager.AuthorizationStatus.authorized)
             } else {
-                result(ASIdentifierManager.shared().isAdvertisingTrackingEnabled)
+                result(!ASIdentifierManager.shared().isAdvertisingTrackingEnabled)
             }
         default:
             result(nil)
