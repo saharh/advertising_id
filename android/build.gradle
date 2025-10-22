@@ -60,5 +60,6 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.google.android.gms:play-services-ads-identifier:18.2.0"
+//    implementation "com.google.android.gms:play-services-ads-identifier:18.2.0"
+    implementation "com.google.android.gms:play-services-ads-identifier:18.0.1"
 }
